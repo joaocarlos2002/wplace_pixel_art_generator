@@ -40,7 +40,9 @@ python main.py
 Escolha a opção 1 no menu e informe:
 
 - Caminho da imagem (ex: C:\Users\joao_\OneDrive\Desktop\teste1234567.jpg) o windowns tem uma opção no direito de copy as path
-  <img width="318" height="561" alt="image" src="https://github.com/user-attachments/assets/eef67efd-e8a4-4321-b4f3-4930a8e2a26d" />
+  
+<img width="318" height="561" alt="image" src="https://github.com/user-attachments/assets/eef67efd-e8a4-4321-b4f3-4930a8e2a26d" />
+
 - Tamanho desejado (ex: 16 para 16x16)
 - Se quer modo preto/cinza
 - Se quer gerar camadas
