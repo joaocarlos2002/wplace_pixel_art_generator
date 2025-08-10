@@ -1,4 +1,4 @@
-from src.WPlaceBot import extrair_cores
+from src.WPlace import extrair_cores
 from src.tutorial_pixel_art import tutorial_pixel_art
 
 MENU = '''\n==== MENU PIXEL ART ====

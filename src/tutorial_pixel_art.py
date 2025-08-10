@@ -57,32 +57,38 @@ def tutorial_pixel_art(txt_path):
     matriz = [linha.strip().split() for linha in linhas]
     total = sum(len(linha) for linha in matriz)
     idx = 0
+    bloco = 10
     while 0 <= idx < total:
-        pos = idx
-        y = 0
-        while pos >= len(matriz[y]):
-            pos -= len(matriz[y])
-            y += 1
-        x = pos
-        valor = matriz[y][x]
-        cor_nome = num_to_nome.get(int(valor), 'cor desconhecida')
-        
+        pixels_info = []
+        for i in range(idx, min(idx+bloco, total)):
+            pos = i
+            y = 0
+            while pos >= len(matriz[y]):
+                pos -= len(matriz[y])
+                y += 1
+            x = pos
+            valor = matriz[y][x]
+            cor_nome = num_to_nome.get(int(valor), 'cor desconhecida')
+            pixels_info.append(f"[{i+1}] Linha {y+1}, Coluna {x+1}: {cor_nome} (cor {valor})")
         barra_len = 30
-        progresso = int((idx+1)/total * barra_len)
-        barra = '[' + '#' * progresso + '-' * (barra_len - progresso) + f'] {idx+1}/{total}'
+        progresso = int((idx+bloco)/total * barra_len)
+        barra = '[' + '#' * min(progresso, barra_len) + '-' * max(barra_len - progresso, 0) + f'] {min(idx+bloco, total)}/{total}'
+        print("\n================ PIXEL ART TUTORIAL ================")
         print(barra)
-        
-        print(f"Pixel {idx+1}/{total}: Linha {y+1}, Coluna {x+1} -> Cor número {valor} ({cor_nome})")
+        print(f"Próximos {bloco} pixels:")
+        print("---------------------------------------------------")
+        for info in pixels_info:
+            print(info)
+        print("---------------------------------------------------")
         print("Pressione Enter para avançar, Backspace para voltar, Esc para sair.")
         while True:
             event = keyboard.read_event()
             if event.event_type == keyboard.KEY_DOWN:
                 if event.name == 'enter':
-                    idx += 1
+                    idx += bloco
                     break
                 elif event.name == 'backspace':
-                    if idx > 0:
-                        idx -= 1
+                    idx = max(0, idx-bloco)
                     break
                 elif event.name == 'esc':
                     print("Saindo do tutorial...")
